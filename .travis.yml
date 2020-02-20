@@ -4,7 +4,9 @@ before_install:
 - git config --global user.email "jameshopbourn@hotmail.com"
 
 script:
-- cat shortcuts.txt >> history 
+- mkdir public
+- cat shortcuts.txt >> history
+- cp history public
 
 # 成功之后进入 public 目录将 public 目录内的内容上传到 master resource 分支
 after_success:
