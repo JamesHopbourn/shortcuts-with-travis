@@ -1,0 +1,19 @@
+before_install:
+# git 设置
+- git config --global user.name "James Hopbourn"
+- git config --global user.email "jameshopbourn@hotmail.com"
+
+script:
+#- chmod 777 build.sh
+#- ./build.sh
+- mkdir -p public
+- touch 1.txt
+- mv *.txt public
+
+# 成功之后进入 public 目录将 public 目录内的内容上传到 master resource 分支
+after_success:
+- cd  public
+- git init
+- git add .
+- git commit -m "Travis CI Auto Builder"
+- git push --force https://${token}@github.com/JamesHopbourn/shortcuts-with-travis.git HEAD:develop 
