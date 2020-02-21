@@ -4,14 +4,13 @@ before_install:
 - git config --global user.email "jameshopbourn@hotmail.com"
 
 script:
-- mkdir public
-- cat shortcuts.txt >> history
-- cp history public
+- curl $(cat shortcuts.txt) -o $(date +%H%M%S).html
 
 # 成功之后进入 public 目录将 public 目录内的内容上传到 master resource 分支
 after_success:
-- cd  public
-- git init
+- git clone -b develop https://github.com/JamesHopbourn/shortcuts-with-travis public
+- mv *.html public 
+- cd public
 - git add .
 - git commit -m "Travis CI Auto Builder"
 - git push --force https://${token}@github.com/JamesHopbourn/shortcuts-with-travis.git HEAD:develop 
