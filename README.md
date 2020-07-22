@@ -15,3 +15,8 @@
 curl -u "JamesHopbourn:token" -X PUT 'https://api.github.com/repos/JamesHopbourn/shortcuts-with-travis/contents/shortcuts.txt' -d '{"message": "my commit message3",  "committer": {"name": "james", "email": "jameshopbourn@gmail.com" }, "content": "bXkgdXBkYXRlZCBmaWxlIGNvbnRlbnRz", "sha": "fb617c9e42866ca24d0ff8e0c2725048f6f9530c"}'
 ```
 
+更新内容使用 base64 编码后替换到 content
+sha 通过 API 获取
+```
+curl https://api.github.com/repos/JamesHopbourn/shortcuts-with-travis/contents/shortcuts.txt|jq .sha|sed 's/"//g'|pbcopy
+```
